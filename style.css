@@ -1,45 +1,55 @@
-.heading{
-    text-align: center;
-    color: red;
-    font-size: 30px;
-    padding: 20px;
-}
+#heading{
 
-.box{
+  text-align: center;
+  font-size: 30px;
+  padding: 50px 0px 50px 0px;
+}
+#pokemon{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+
 }
 
-.box *{
-width:30px;
-height:30px;
-font-size: 20px;
-margin: 5px;
-}
-
-#myBtn{
-    background-color: grey;
-    border-radius: 20px;
-}
-
-#xyz{
+.button{
     display: flex;
-    flex-wrap: wrap;
-
+    justify-content: space-evenly;
 
 }
 
-.my{
-    background-color: lightblue;
-    border-radius: 10px;
-    margin: 10px;
-    width: 300px;
-    height: 80px;
-    font-size: 30px;
-    text-align: center;
-    padding: 1px;
-}
-.all{
-    background-color: red;
-    margin: 10px;
-}
+#loader1 {
+    animation: move1 0.8s linear infinite;
+    position: absolute;
+    top: 200px;
+  }
+
+  @keyframes move1 {
+    0% {
+      left: 500px;
+      /* transform: rotate(0deg); */
+    }
+    100% {
+      left: 1000px;
+      /* transform: rotate(360deg); */
+    }
+  }
+
+  #loader2 {
+    animation: move2 0.8s linear infinite;
+    position: absolute;
+    top: 200px;
+  }
+
+  @keyframes move2 {
+    0% {
+      left: 1000px;
+      /* transform: rotate(0deg); */
+    }
+    100% {
+      left: 500px;
+      /* transform: rotate(360deg); */
+    }
+  }
+
+  body{
+    background-color:blanchedalmond;
+  }

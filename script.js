@@ -1,123 +1,128 @@
-const element = document.getElementById("myBtn");
+let me = 
+{hp:100,
+damage:'',
+health:'',
+defense:'',
+}
+  
+let enemy = 
+{hp:100,
+damage:'',
+health:'',
+defense:'',
+}
 
+const Img1 = document.getElementById("loader1");
+const Img2 = document.getElementById("loader2");
+
+function hide() {
+    Img1.style.display = "none";
+    Img2.style.display = "none";
+  }
+  
+  hide();
+
+let round = 1
+
+let win = 0
+let lose = 0
+
+const element1 = document.getElementById("mybutton1");
+
+element1.addEventListener("click", myFunction1);
+
+
+function myFunction1() {
+    round = 1
+      document.getElementById("1").innerText = ""
+        document.getElementById("2").innerText = ""
+    me.hp = 100
+    enemy.hp = 100
+}
+
+const element = document.getElementById("mybutton");
 
 element.addEventListener("click", myFunction);
 
+
 function myFunction() {
 
-    let numArr = [];
-for (let i = 0; i < 7; i++) {
-    let num = Math.floor(Math.random() * 49) + 1;
- // Math.random() * 49 =>  0 -> 48.9999999999999999999999
- // Math.ceil(Math.random() * 49) =>  0 -> 49 => additional checking num != 0
- // Math.floor(Math.random() * 49) => 0 -> 48 => all plus one => 1 - 49 
-    if (numArr.indexOf(num) < 0) { 
-        // number ok 
-        numArr.push(num);
-    } else {
-        // number repeated
-        i--;
-    }
-}
-
-numArr.sort(function(a, b){return a-b})
-
-    let arr = []
-
-    let count = 0
 
 
-    arr.push(document.getElementById("lname").value)
-    arr.push(document.getElementById("2name").value)
-    arr.push(document.getElementById("3name").value)
-    arr.push(document.getElementById("4name").value)
-    arr.push(document.getElementById("5name").value)
-    arr.push(document.getElementById("6name").value)
-    arr.push(document.getElementById("7name").value)
+if(me.hp>0 && enemy.hp >0){
+
+    me.damage = 10 + Math.floor(Math.random()*30)
+    enemy.damage = 10 + Math.floor(Math.random()*25)
+    me.defense = Math.floor(Math.random()*20)
+    enemy.defense = Math.floor(Math.random()*20)
+
+    document.getElementById("heading").innerText = ""
+
+
+    let para0 = document.createElement("div");
     
-    for(let ggg=0;ggg<arr.length;ggg++){
+    para0.classList.add("my");
 
-    }
+    para0.innerText = "Round " + round
 
+    if(round%2 !== 0){
 
+    document.getElementById("2").innerText = ""
 
-
- if (arr == ',,,,,,'){
-    arr=[]
-    for (let i = 0; i < 7; i++) {
-        let num2 = Math.floor(Math.random() * 49) + 1;
-     // Math.random() * 49 =>  0 -> 48.9999999999999999999999
-     // Math.ceil(Math.random() * 49) =>  0 -> 49 => additional checking num != 0
-     // Math.floor(Math.random() * 49) => 0 -> 48 => all plus one => 1 - 49 
-        if (arr.indexOf(num2) < 0) { 
-            // number ok 
-            arr.push(num2);
-        } else {
-            // number repeated
-            i--;
-        }
-    }
+    Img1.style.display = "block";
+    setTimeout(hide, 800);
     
- }
 
- arr.sort(function(a, b){return a-b})
+    let para2 = document.createElement("div");
+
+    para2.classList.add("my");
+
+    enemy.hp = enemy.hp - me.damage  + enemy.defense
 
 
-for(let i = 0; i < arr.length; i++){
-    for(let j = 0; j < numArr.length; j++){
-        if(arr[i] == numArr[j]){
-            count++
-        }
+    para2.innerText = "Enemy hp: " + enemy.hp + "/100"
+    + "\n" + "Your damage: " + me.damage
+    + "\n" + "Enemy defense: " + enemy.defense
+    
+
+    if(enemy.hp<=0){
+        para2.innerText =  "Enemy lose"
+        win++
+
     }
-}
-
-let para = document.createElement("div");
-
-para.classList.add("all");
-
-let para1 = document.createElement("div");
-
-para1.classList.add("my");
-
-para1.innerText = "Your choice " + arr 
-
-let para2 = document.createElement("div");
-
-para2.classList.add("my");
-
-para2.innerText = "Result " + "\n" + numArr
-
-let para3 = document.createElement("div");
-
-para3.classList.add("my");
-
-para3.innerText = "No. of true " + "\n" + count 
 
 
-for(let gg=0;gg<arr.length;gg++){
-    if(arr[gg] <= 0 || arr[gg]>49 || arr[gg] == ''){
-        alert("please input correct number")
-        return;
-        
+    document.getElementById("2").appendChild(para2)
+
     } else{
-        document.getElementById("xyz").appendChild(para).appendChild(para1)
+        document.getElementById("1").innerText = ""
 
-document.getElementById("xyz").appendChild(para).appendChild(para2)
+        Img2.style.display = "block";
+        setTimeout(hide, 800);
+    
 
-document.getElementById("xyz").appendChild(para).appendChild(para3)
+        let para1 = document.createElement("div");
+    
+        para1.classList.add("my");
+    
+        me.hp = me.hp - enemy.damage + me.defense
+    
+        para1.innerText = "Your hp: " + me.hp + "/100"
+        + "\n" + "Enemy damage: " + enemy.damage
+        + "\n" + "Your defense: " + me.defense
+        + "\n" + "Win: " + win
+        + "\n" + "Lose: " + lose
+
+        if(me.hp<=0){
+            para1.innerText =  "You lose"
+            lose++
+        }
+    
+    
+        document.getElementById("1").appendChild(para1)
 
     }
-    
-}
-
-para.addEventListener("click", removeFunction);
-
-function removeFunction() {
-    document.getElementById("xyz").removeChild(para)
-}
-}
-
-
-
-
+    document.getElementById("heading").appendChild(para0)
+round++
+}}
 
