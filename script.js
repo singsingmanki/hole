@@ -36,7 +36,7 @@ function setKind(){
         kind.innerHTML = "";
     }
     let hole = document.createElement("img")
-    hole.src = "https://static.wikia.nocookie.net/worldpedias/images/c/c4/250px-XY_%E5%B0%8F%E6%99%BA.png/revision/latest?cb=20160808093811&path-prefix=zh"
+    hole.src = "https://upload.wikimedia.org/wikipedia/zh/e/e4/Ash_Ketchum_Journeys.png"
 
     let num = random();
     if(bonus && bonus.id  == num){ 
